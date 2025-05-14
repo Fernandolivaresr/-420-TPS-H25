@@ -17,14 +17,11 @@ public abstract class Item {
 
     //abstract
     public abstract Category getCategory();
-
-    //abstract
     public abstract String getCategoryString();
 
     public int getID() {
         return ID;
     }
-
     public void setID(int ID) {
         this.ID = ID;
     }
@@ -32,23 +29,20 @@ public abstract class Item {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
     public double getPrice() {
-        return quantityInStock;
+        return price;
     }
-
     public void setPrice(double price) {
-
+        this.price = price;
     }
 
     public int getQuantityInStock() {
         return quantityInStock;
     }
-
     public void setQuantityInStock(int quantityInStock) {
         this.quantityInStock = quantityInStock;
     }
@@ -59,10 +53,14 @@ public abstract class Item {
     public void decreaseQuantityInStock() {
         quantityInStock--;
     }
+
     public String infoToString() {
-        return "ID: " + ID + "\nName: " + name + "\nPrice: " + price + "\nIn Stock: " + quantityInStock;
+        String info;
+        info = "ID: " + ID + "\nName: " + name + "\nPrice: " + price + "\nIn Stock: " + quantityInStock;
+        return info;
     }
 
+    @Override
     public String toString() {
         return infoToString();
     }

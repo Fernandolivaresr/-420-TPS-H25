@@ -13,28 +13,36 @@ public class ItemMilk extends Item {
 
     @Override
     public Category getCategory() {
-        return null;
+        return Category.Milk;
     }
     @Override
     public String getCategoryString() {
-        return "";
+        return Category.Milk.toString();
     }
 
 
     public double getFat(){
-        return 0;
+        return fat;
     }
-    public void setFat(double fat){}
+    public void setFat(double fat){
+        this.fat = fat;
+    }
 
     public double getLiters(){
-        return 0;
+        return liters;
     }
     public void setLiters(double liters){
-
+        this.liters = liters;
     }
 
+    @Override
     public String infoToString() {
-        return "ID:\t" + getID() + "\nName:\t" + getName() + "\nPrice:\t" + getPrice() + "\nFat:\t" + getFat() + "\nLiters:\t" + getLiters();
+        return "Item information"+
+                "\n\tID:\t" + getID() +
+                "\n\tName:\t" + getName() +
+                "\n\tPrice:\t" + getPrice() +
+                "\n\tFat:\t" + getFat() +
+                "\n\tLiters:\t" + getLiters();
     }
 
 }

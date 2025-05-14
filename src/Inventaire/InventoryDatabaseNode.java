@@ -4,10 +4,15 @@ import Item.Item;
 
 public class InventoryDatabaseNode {
 
-    private Item item;
-    private InventoryDatabaseNode next;
+    //default --> visible pour tout le package
+    //[item]--next-->null
+    Item item;
+    InventoryDatabaseNode next;
 
     //public methodes
-    public InventoryDatabaseNode(Item item, InventoryDatabaseNode next) {}
+    public InventoryDatabaseNode(Item item, InventoryDatabaseNode next) {
+        this.item = item;
+        this.next = next;
+    }
 
 }

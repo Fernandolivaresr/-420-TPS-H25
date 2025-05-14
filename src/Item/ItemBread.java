@@ -13,12 +13,11 @@ public class ItemBread extends Item {
 
     @Override
     public Category getCategory() {
-        return null;
+        return Category.Bread;
     }
-
     @Override
     public String getCategoryString() {
-        return "";
+        return Category.Bread.toString();
     }
 
     public String getColor() {
@@ -35,8 +34,14 @@ public class ItemBread extends Item {
         this.weight = weight;
     }
 
+    @Override
     public String infoToString() {
-        return "ID:\t" + getID() + "\nName:\t" + getName() + "\nPrice:\t" + getPrice() + "\nColor:\t" + getColor() + "\nWeight:\t" + getWeight();
+        return "Item information" +
+                "\n\tID:\t" + getID() +
+                "\n\tName:\t" + getName() +
+                "\n\tPrice:\t" + getPrice() +
+                "\n\tColor:\t" + getColor() +
+                "\n\tWeight:\t" + getWeight();
     }
 
 }

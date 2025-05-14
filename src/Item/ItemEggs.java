@@ -13,11 +13,11 @@ public class ItemEggs extends Item {
 
     @Override
     public Category getCategory() {
-        return null;
+        return Category.Eggs;
     }
     @Override
     public String getCategoryString() {
-        return "";
+        return Category.Eggs.toString();
     }
 
 
@@ -35,8 +35,14 @@ public class ItemEggs extends Item {
         this.number = number;
     }
 
+    @Override
     public String infoToString() {
-        return "ID:\t" + getID() + "\nName:\t" + getName() + "\nPrice:\t" + getPrice() + "\nColor:\t" + getColor() + "\nNumber:\t" + getNumber();
+        return "Item information"+
+                "\n\tID:\t" + getID() +
+                "\n\tName:\t" + getName() +
+                "\n\tPrice:\t" + getPrice() +
+                "\n\tColor:\t" + getColor() +
+                "\n\tNumber:\t" + getNumber();
     }
 
 

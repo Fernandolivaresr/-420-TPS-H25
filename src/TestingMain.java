@@ -28,13 +28,19 @@ public class TestingMain  {
         //IO//lireInventaire("items.in",inventoryManager);                                          // 9 points
         System.out.println("\n=> TEST Création de nouveaux items");                                 // 6 points
         inventoryManager.addNewBreadItem(10, "Pain brun riche", 2.45, "brun", 200);
-        //inventoryManager.addNewBreadItem(11, "Pain blanc traditionnel", 1.50, "blanc", 200);
-        //inventoryManager.addNewEggsItem(12, "Oeufs de poules en liberté", 3.50, "Brun", 12);
-        //inventoryManager.addNewMilkItem(13, "Lait bio très gras", 8.45, 3.8, 2);
+        inventoryManager.addNewBreadItem(11, "Pain blanc traditionnel", 1.50, "blanc", 200);
+        inventoryManager.addNewEggsItem(12, "Oeufs de poules en liberté", 3.50, "Brun", 12);
+        inventoryManager.addNewMilkItem(13, "Lait bio très gras", 8.45, 3.8, 2);
 
         System.out.println("\n=> TEST Trouver un item et afficher l'information sur cet item");     // 6 points
         Item item1 = inventoryManager.getItem(10);
+        Item item2 = inventoryManager.getItem(11);
+        Item item3 = inventoryManager.getItem(12);
+        Item item4 = inventoryManager.getItem(13);
         System.out.println(item1.infoToString());
+        System.out.println(item2.infoToString());
+        System.out.println(item3.infoToString());
+        System.out.println(item4.infoToString());
 
         System.out.println("\n=> TEST Création d'un item avec un ID existant");                     // 6 points
         //try {

@@ -8,7 +8,9 @@ public class InventoryManager {
     private InventoryDatabase inventoryDatabase;
 
     //public methodes
-    public InventoryManager() {}
+    public InventoryManager() {
+        inventoryDatabase = new InventoryDatabase();
+    }
     public void addNewBreadItem(int ID, String name, double price, String color, int weight) {
         ItemBread itemBread = new ItemBread(ID, name, price, color, weight);
         inventoryDatabase.insert(itemBread);
