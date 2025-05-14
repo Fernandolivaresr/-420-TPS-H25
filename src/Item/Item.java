@@ -4,11 +4,16 @@ public abstract class Item {
 
     private int ID;
     private String name;
-    private int quantityInStock;
+    private double price;
+    private int quantityInStock = 0;
 
     public Item(int ID, String Name, double price) {
-
+        this.ID = ID;
+        this.name = Name;
+        this.price = price;
     }
+
+    private Category category;
 
     //abstract
     public abstract Category getCategory();
@@ -55,7 +60,7 @@ public abstract class Item {
         quantityInStock--;
     }
     public String infoToString() {
-        return "ID: " + ID + ", Name: " + name + ", Quantity: " + quantityInStock;
+        return "ID: " + ID + "\nName: " + name + "\nPrice: " + price + "\nIn Stock: " + quantityInStock;
     }
 
     public String toString() {

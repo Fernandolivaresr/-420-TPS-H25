@@ -7,6 +7,8 @@ public class ItemEggs extends Item {
 
     public ItemEggs(int ID, String name, double price, String color, int number) {
         super(ID, name, price);
+        this.color = color;
+        this.number = number;
     }
 
     @Override
@@ -34,7 +36,7 @@ public class ItemEggs extends Item {
     }
 
     public String infoToString() {
-        return super.infoToString() + "\nColor: " + color + "\nNumber: " + number;
+        return "ID:\t" + getID() + "\nName:\t" + getName() + "\nPrice:\t" + getPrice() + "\nColor:\t" + getColor() + "\nNumber:\t" + getNumber();
     }
 
 

@@ -7,6 +7,8 @@ public class ItemMilk extends Item {
 
     public ItemMilk(int ID, String name, double price, double fat, double liters) {
         super(ID, name, price);
+        this.fat = fat;
+        this.liters = liters;
     }
 
     @Override
@@ -32,7 +34,7 @@ public class ItemMilk extends Item {
     }
 
     public String infoToString() {
-        return null;
+        return "ID:\t" + getID() + "\nName:\t" + getName() + "\nPrice:\t" + getPrice() + "\nFat:\t" + getFat() + "\nLiters:\t" + getLiters();
     }
 
 }

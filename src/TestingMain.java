@@ -1,6 +1,18 @@
+import Exceptions.ExceptionInsufficientQuantityInStock;
+import Exceptions.ExceptionItemAlreadyExists;
 import Exceptions.ExceptionItemNotFound;
+import GUI.GUIInventoryManager;
+import Inventaire.InventoryManager;
+import Item.Item;
+
+import java.io.*;
+import java.util.regex.Pattern;
+import java.util.regex.MatchResult;
 
 public class TestingMain  {
+
+    /*UML, Orienté-Objet, Héritage, Swing, Paquetage,
+    Entrées-Sorties, Javadoc*/
 
     public static void main(String[] args) throws Exception {
         //
@@ -12,17 +24,17 @@ public class TestingMain  {
         // TODO -- Dé-commentez la ligne //G// pur tester votre implémentation graphique
         //         Éventuellement, vous devriez obtenir le même résultat que dans le clip de l'énoncé
 
-        // InventoryManager inventoryManager = new InventoryManager();
+        InventoryManager inventoryManager = new InventoryManager();
         //IO//lireInventaire("items.in",inventoryManager);                                          // 9 points
         System.out.println("\n=> TEST Création de nouveaux items");                                 // 6 points
-        //inventoryManager.addNewBreadItem(10, "Pain brun riche", 2.45, "brun", 200);
+        inventoryManager.addNewBreadItem(10, "Pain brun riche", 2.45, "brun", 200);
         //inventoryManager.addNewBreadItem(11, "Pain blanc traditionnel", 1.50, "blanc", 200);
         //inventoryManager.addNewEggsItem(12, "Oeufs de poules en liberté", 3.50, "Brun", 12);
         //inventoryManager.addNewMilkItem(13, "Lait bio très gras", 8.45, 3.8, 2);
 
         System.out.println("\n=> TEST Trouver un item et afficher l'information sur cet item");     // 6 points
-        //Item item1 = inventoryManager.getItem(10);
-        //System.out.println(item1.infoToString());
+        Item item1 = inventoryManager.getItem(10);
+        System.out.println(item1.infoToString());
 
         System.out.println("\n=> TEST Création d'un item avec un ID existant");                     // 6 points
         //try {

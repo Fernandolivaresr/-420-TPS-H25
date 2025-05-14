@@ -7,6 +7,8 @@ public class ItemBread extends Item {
 
     public ItemBread(int ID, String name, double price, String color, int weight) {
         super(ID, name, price);
+        this.color = color;
+        this.weight = weight;
     }
 
     @Override
@@ -34,7 +36,7 @@ public class ItemBread extends Item {
     }
 
     public String infoToString() {
-        return "";
+        return "ID:\t" + getID() + "\nName:\t" + getName() + "\nPrice:\t" + getPrice() + "\nColor:\t" + getColor() + "\nWeight:\t" + getWeight();
     }
 
 }

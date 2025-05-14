@@ -1,6 +1,6 @@
 package Inventaire;
 
-import Item.Item;
+import Item.*;
 
 public class InventoryDatabase {
 
