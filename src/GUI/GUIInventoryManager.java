@@ -10,6 +10,7 @@ import java.awt.event.ComponentListener;
 import Inventaire.*;
 import Item.*;
 
+//todo
 public class GUIInventoryManager extends JFrame
 {
     private InventoryManager inventoryManager;

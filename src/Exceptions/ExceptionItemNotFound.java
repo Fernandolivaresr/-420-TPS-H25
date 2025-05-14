@@ -1,7 +1,7 @@
 package Exceptions;
 
 public class ExceptionItemNotFound extends RuntimeException {
-    public ExceptionItemNotFound(String message) {
-        super(message);
+    public ExceptionItemNotFound(int ID) {
+//        super(message);
     }
 }
