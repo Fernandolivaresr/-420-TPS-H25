@@ -35,6 +35,12 @@ public class TestingMain  {
         System.out.println("\n=> TEST Trouver un item et afficher l'information sur cet item");     // 6 points
         Item item1 = inventoryManager.getItem(10);
         System.out.println(item1.infoToString());
+        Item item2 = inventoryManager.getItem(11);
+        System.out.println(item2.infoToString());
+        Item item3 = inventoryManager.getItem(12);
+        System.out.println(item3.infoToString());
+        Item item4 = inventoryManager.getItem(13);
+        System.out.println(item4.infoToString());
 
         System.out.println("\n=> TEST Création d'un item avec un ID existant");                     // 6 points
         try {
@@ -44,36 +50,39 @@ public class TestingMain  {
         }
 
         System.out.println("\n=> TEST Enlever un item");                                            // 6 points
-        //inventoryManager.removeItem(10);
+        inventoryManager.removeItem(10);
 
         System.out.println("\n=> TEST Enlever un item non existant (catch exception)");             // 6 points
-        //try {
-        //    inventoryManager.removeItem(10);
-        //} catch (ExceptionItemNotFound e) {
-        //    System.out.println(e.getMessage());
-        //}
+        try {
+            inventoryManager.removeItem(10);
+        } catch (ExceptionItemNotFound e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("\n=> TEST Incrémenter la quantité d'un item");                          // 8 points
-        //try {
-        //    inventoryManager.increaseItemQuantity(10, 18);
-        //} catch (ExceptionItemNotFound e) {
-        //    System.out.println(e.getMessage());
-        //}
-        //try {
-        //    inventoryManager.increaseItemQuantity(11, 3);
-        //} catch (ExceptionItemNotFound e) {
-        //    System.out.println(e.getMessage());
-        //}
-        //try {
-        //   inventoryManager.increaseItemQuantity(12, 4);
-        //} catch (ExceptionItemNotFound e) {
-        //    System.out.println(e.getMessage());
-        //}
-        //try {
-        //    inventoryManager.increaseItemQuantity(13, 23);
-        //} catch (ExceptionItemNotFound e) {
-        //    System.out.println(e.getMessage());
-        //}
+        try {
+            inventoryManager.increaseItemQuantity(10, 18);
+        } catch (ExceptionItemNotFound e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            inventoryManager.increaseItemQuantity(11, 3);
+            System.out.println(item2.infoToString());//tester increase quantity
+        } catch (ExceptionItemNotFound e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+           inventoryManager.increaseItemQuantity(12, 4);
+           System.out.println(item3.infoToString());//tester increase quantity
+        } catch (ExceptionItemNotFound e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            inventoryManager.increaseItemQuantity(13, 23);
+            System.out.println(item4.infoToString());//tester increase quantity
+        } catch (ExceptionItemNotFound e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("\n=> TEST Incrementer la quantité d'un item et afficher les nouvelles informations"); // 6 points
         //inventoryManager.increaseItemQuantity(11, 25);

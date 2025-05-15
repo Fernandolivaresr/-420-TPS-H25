@@ -1,5 +1,6 @@
 package Inventaire;
 
+import Exceptions.ExceptionItemNotFound;
 import Item.*;
 
 public class InventoryDatabase {
@@ -16,6 +17,7 @@ public class InventoryDatabase {
         itemsCount++;
     }
     public Item findById(int ID){
+
         InventoryDatabaseNode current = first;
         // Parcourir la liste
         while (current != null) {
@@ -26,7 +28,19 @@ public class InventoryDatabase {
         }
         return null; // Pas trouve
     }
-    public void remove(int ID){}
+    public void remove(int ID){
+
+        InventoryDatabaseNode current = first;
+        //parcourir liste
+        while (current != null) {
+            if (current.item.getID() == ID) {
+                first = current.next;
+                itemsCount--;
+                break;
+            }
+            current = current.next;
+        }
+    }
     public Item[] getArrayOfItems(){
         return null;
     }
