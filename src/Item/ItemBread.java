@@ -36,10 +36,7 @@ public class ItemBread extends Item {
 
     @Override
     public String infoToString() {
-        return "Item information" +
-                "\n\tID:\t" + getID() +
-                "\n\tName:\t" + getName() +
-                "\n\tPrice:\t" + getPrice() +
+        return super.infoToString() +
                 "\n\tColor:\t" + getColor() +
                 "\n\tWeight:\t" + getWeight();
     }

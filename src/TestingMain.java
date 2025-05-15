@@ -34,20 +34,14 @@ public class TestingMain  {
 
         System.out.println("\n=> TEST Trouver un item et afficher l'information sur cet item");     // 6 points
         Item item1 = inventoryManager.getItem(10);
-        Item item2 = inventoryManager.getItem(11);
-        Item item3 = inventoryManager.getItem(12);
-        Item item4 = inventoryManager.getItem(13);
         System.out.println(item1.infoToString());
-        System.out.println(item2.infoToString());
-        System.out.println(item3.infoToString());
-        System.out.println(item4.infoToString());
 
         System.out.println("\n=> TEST Création d'un item avec un ID existant");                     // 6 points
-        //try {
-        //    inventoryManager.addNewBreadItem(10, "Pain bio", 5, "brun", 400);
-        //} catch (ExceptionItemAlreadyExists e) {
-        //    System.out.println(e.getMessage());
-        //}
+        try {
+            inventoryManager.addNewBreadItem(10, "Pain bio", 5, "brun", 400);
+        } catch (ExceptionItemAlreadyExists e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("\n=> TEST Enlever un item");                                            // 6 points
         //inventoryManager.removeItem(10);

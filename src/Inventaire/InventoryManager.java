@@ -1,5 +1,6 @@
 package Inventaire;
 
+import Exceptions.ExceptionItemAlreadyExists;
 import Item.*;
 
 
@@ -11,9 +12,18 @@ public class InventoryManager {
     public InventoryManager() {
         inventoryDatabase = new InventoryDatabase();
     }
-    public void addNewBreadItem(int ID, String name, double price, String color, int weight) {
-        ItemBread itemBread = new ItemBread(ID, name, price, color, weight);
-        inventoryDatabase.insert(itemBread);
+    public void addNewBreadItem(int ID, String name, double price, String color, int weight) throws ExceptionItemAlreadyExists {
+
+       /* try {*/
+            ItemBread itemBread = new ItemBread(ID, name, price, color, weight);
+            if (inventoryDatabase.findById(itemBread.getID()) == null) {
+                inventoryDatabase.insert(itemBread);
+            } else {
+                throw new ExceptionItemAlreadyExists(itemBread.getID());
+            }
+        /*}catch (ExceptionItemAlreadyExists e) {
+            System.out.print(e.getMessage());
+        }*/
     }
     public void addNewEggsItem(int ID, String name, double price, String color, int number) {
         ItemEggs itemEggs = new ItemEggs(ID, name, price, color, number);

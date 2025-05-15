@@ -2,6 +2,6 @@ package Exceptions;
 
 public class ExceptionInsufficientQuantityInStock extends RuntimeException {
     public ExceptionInsufficientQuantityInStock(int quantity) {
-//        super(message);
+        super("Stock insuffisant pour enlever " + quantity + "unité(s)");
     }
 }

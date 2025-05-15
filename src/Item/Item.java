@@ -55,9 +55,11 @@ public abstract class Item {
     }
 
     public String infoToString() {
-        String info;
-        info = "ID: " + ID + "\nName: " + name + "\nPrice: " + price + "\nIn Stock: " + quantityInStock;
-        return info;
+        return "Item information: " +
+                "\n\tID:\t"+ ID +
+                "\n\tName: " + name +
+                "\n\tPrice: " + price +
+                "\n\tIn Stock: " + quantityInStock;
     }
 
     @Override

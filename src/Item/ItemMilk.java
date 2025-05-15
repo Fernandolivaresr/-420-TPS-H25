@@ -37,10 +37,7 @@ public class ItemMilk extends Item {
 
     @Override
     public String infoToString() {
-        return "Item information"+
-                "\n\tID:\t" + getID() +
-                "\n\tName:\t" + getName() +
-                "\n\tPrice:\t" + getPrice() +
+        return super.infoToString() +
                 "\n\tFat:\t" + getFat() +
                 "\n\tLiters:\t" + getLiters();
     }
