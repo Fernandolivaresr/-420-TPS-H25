@@ -5,12 +5,13 @@ public abstract class Item {
     private int ID;
     private String name;
     private double price;
-    private int quantityInStock = 0;
+    private int quantityInStock;
 
     public Item(int ID, String Name, double price) {
         this.ID = ID;
         this.name = Name;
         this.price = price;
+        this.quantityInStock = 0;
     }
 
     private Category category;
@@ -47,11 +48,11 @@ public abstract class Item {
         this.quantityInStock = quantityInStock;
     }
 
-    public void increaseQuantityInStock() {
-        quantityInStock++;
+    public void increaseQuantityInStock(int quantity) {
+        quantityInStock += quantity;
     }
-    public void decreaseQuantityInStock() {
-        quantityInStock--;
+    public void decreaseQuantityInStock(int quantity) {
+        quantityInStock -= quantity;
     }
 
     public String infoToString() {
@@ -59,12 +60,11 @@ public abstract class Item {
                 "\n\tID:\t"+ ID +
                 "\n\tName: " + name +
                 "\n\tPrice: " + price +
-                "\n\tIn Stock: " + quantityInStock;
+                "\n\tIn Stock: " + getQuantityInStock();
     }
 
     @Override
     public String toString() {
         return infoToString();
     }
-
 }

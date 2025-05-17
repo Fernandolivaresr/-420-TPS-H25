@@ -17,7 +17,6 @@ public class InventoryDatabase {
         itemsCount++;
     }
     public Item findById(int ID){
-
         InventoryDatabaseNode current = first;
         // Parcourir la liste
         while (current != null) {
@@ -31,13 +30,20 @@ public class InventoryDatabase {
     public void remove(int ID){
 
         InventoryDatabaseNode current = first;
+        InventoryDatabaseNode previous = null;
         //parcourir liste
         while (current != null) {
             if (current.item.getID() == ID) {
-                first = current.next;
+                if (previous == null) {
+                    // Removing the first node
+                    first = current.next;
+                } else {
+                    previous.next = current.next;
+                }
                 itemsCount--;
-                break;
+                return;
             }
+            previous = current;
             current = current.next;
         }
     }
