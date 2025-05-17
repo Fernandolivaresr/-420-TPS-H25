@@ -8,9 +8,8 @@ import Item.*;
 
 public class InventoryManager {
 
-    private InventoryDatabase inventoryDatabase;
+    private final InventoryDatabase inventoryDatabase;
 
-    //public methodes
     public InventoryManager() {
         inventoryDatabase = new InventoryDatabase();
     }
@@ -49,45 +48,33 @@ public class InventoryManager {
         }
     }
     public void increaseItemQuantity(int ID, int quantity) throws ExceptionItemNotFound {
-
-        /*if (inventoryDatabase.findById(ID) != null) {
-            System.out.println("item to increase found");
-        }else{
-            System.out.println("item to increase not found");
-        }*/
         Item inventoryItem = inventoryDatabase.findById(ID);
         if (inventoryItem != null) {
             inventoryItem.increaseQuantityInStock(quantity);
         } else {
             throw new ExceptionItemNotFound(ID);
         }
-
     }
 
     public void decreaseItemQuantity(int ID, int quantity) throws ExceptionItemNotFound, ExceptionInsufficientQuantityInStock {
         Item inventoryItem = inventoryDatabase.findById(ID);
         if (inventoryItem != null) {
-            /*System.out.println(inventoryItem.getQuantityInStock());
-            System.out.println(quantity);*/
-            // check if the item quantity is bigger than the amount requested to be deleted
             if (inventoryItem.getQuantityInStock() > quantity) {
                 inventoryItem.decreaseQuantityInStock(quantity);
             }else {
                 throw new ExceptionInsufficientQuantityInStock(quantity);
             }
-
-//            inventoryItem.decreaseQuantityInStock(quantity);
         } else {
             throw new ExceptionItemNotFound(ID);
         }
     }
 
-
     public Item getItem(int ID){
         return inventoryDatabase.findById(ID);
     }
+
     public Item[] getArrayOfItems(){
-        return null;
+        return inventoryDatabase.getArrayOfItems();
     }
 
 }

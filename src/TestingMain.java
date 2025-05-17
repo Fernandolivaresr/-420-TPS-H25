@@ -108,10 +108,10 @@ public class TestingMain  {
         }
 
         System.out.println("\n=> TEST Récupérer le array de items");// points
-        //Item[] items = inventoryManager.getArrayOfItems();
-        //for (Item item : items) {
-        //    System.out.println(item.infoToString());
-        //}
+        Item[] items = inventoryManager.getArrayOfItems();
+        for (Item item : items) {
+            System.out.println(item.infoToString());
+        }
         //IO//ecrireInventaire("items.out",inventoryManager);                                       // 9 points
 
         //G//GUIInventoryManager GUIInventoryManager = new GUIInventoryManager(inventoryManager);   // 20 points

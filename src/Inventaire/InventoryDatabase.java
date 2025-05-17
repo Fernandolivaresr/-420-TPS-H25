@@ -48,6 +48,13 @@ public class InventoryDatabase {
         }
     }
     public Item[] getArrayOfItems(){
-        return null;
+        Item [] items = new Item[itemsCount];
+        InventoryDatabaseNode current = first;
+        int i = 0;
+        while (current != null) {
+            items[i++] = current.item;
+            current = current.next;
+        }
+        return items;
     }
 }
