@@ -14,8 +14,6 @@ public abstract class Item {
         this.quantityInStock = 0;
     }
 
-    private Category category;
-
     //abstract
     public abstract Category getCategory();
     public abstract String getCategoryString();
@@ -58,13 +56,13 @@ public abstract class Item {
     public String infoToString() {
         return "Item information: " +
                 "\n\tID:\t"+ ID +
-                "\n\tName: " + name +
-                "\n\tPrice: " + price +
-                "\n\tIn Stock: " + getQuantityInStock();
+                "\n\tName:\t" + name +
+                "\n\tPrice:\t" + price +
+                "\n\tIn Stock:\t" + getQuantityInStock();
     }
 
     @Override
     public String toString() {
-        return infoToString();
+        return getID() + " : " + getCategory() + " - " + getName() + " (" + getQuantityInStock() + ")";
     }
 }

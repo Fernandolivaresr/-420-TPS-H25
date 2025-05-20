@@ -59,7 +59,7 @@ public class InventoryManager {
     public void decreaseItemQuantity(int ID, int quantity) throws ExceptionItemNotFound, ExceptionInsufficientQuantityInStock {
         Item inventoryItem = inventoryDatabase.findById(ID);
         if (inventoryItem != null) {
-            if (inventoryItem.getQuantityInStock() > quantity) {
+            if (inventoryItem.getQuantityInStock() >= quantity) {
                 inventoryItem.decreaseQuantityInStock(quantity);
             }else {
                 throw new ExceptionInsufficientQuantityInStock(quantity);

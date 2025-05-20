@@ -7,6 +7,7 @@ import Item.*;
 
 import java.io.*;
 import java.util.regex.Pattern;
+import java.util.regex.*;
 import java.util.regex.MatchResult;
 
 public class TestingMain  {
@@ -20,11 +21,12 @@ public class TestingMain  {
         //         obtenir le même affichage que celui montré dans l'énoncé
         // TODO --  Dé-commentez les lignes //IO// pour tester les deux fonction de lecture et d'écriture
         //          Vous devriez obtenir le format de fichier montré dans items.in et items.out
-        // TODO -- Dé-commentez la ligne //G// pur tester votre implémentation graphique
+        // TODO -- Dé-commentez la ligne //G// pour tester votre implémentation graphique
         //         Éventuellement, vous devriez obtenir le même résultat que dans le clip de l'énoncé
 
         InventoryManager inventoryManager = new InventoryManager();
-        //IO//lireInventaire("items.in",inventoryManager);                                          // 9 points
+        //IO
+        lireInventaire("items.in",inventoryManager);                                          // 9 points
         System.out.println("\n=> TEST Création de nouveaux items");                                 // 6 points
         inventoryManager.addNewBreadItem(10, "Pain brun riche", 2.45, "brun", 200);
         inventoryManager.addNewBreadItem(11, "Pain blanc traditionnel", 1.50, "blanc", 200);
@@ -34,12 +36,6 @@ public class TestingMain  {
         System.out.println("\n=> TEST Trouver un item et afficher l'information sur cet item");     // 6 points
         Item item1 = inventoryManager.getItem(10);
         System.out.println(item1.infoToString());
-        /*Item item22 = inventoryManager.getItem(11);
-        System.out.println(item22.infoToString());
-        Item item3 = inventoryManager.getItem(12);
-        System.out.println(item3.infoToString());
-        Item item4 = inventoryManager.getItem(13);
-        System.out.println(item4.infoToString());*/
 
         System.out.println("\n=> TEST Création d'un item avec un ID existant");                     // 6 points
         try {
@@ -66,19 +62,16 @@ public class TestingMain  {
         }
         try {
             inventoryManager.increaseItemQuantity(11, 3);
-//            System.out.println(item22.infoToString());
         } catch (ExceptionItemNotFound e) {
             System.out.println(e.getMessage());
         }
         try {
             inventoryManager.increaseItemQuantity(12, 4);
-//            System.out.println(item3.infoToString());
         } catch (ExceptionItemNotFound e) {
             System.out.println(e.getMessage());
         }
         try {
             inventoryManager.increaseItemQuantity(13, 23);
-//            System.out.println(item4.infoToString());
         } catch (ExceptionItemNotFound e) {
             System.out.println(e.getMessage());
         }
@@ -112,9 +105,95 @@ public class TestingMain  {
         for (Item item : items) {
             System.out.println(item.infoToString());
         }
-        //IO//ecrireInventaire("items.out",inventoryManager);                                       // 9 points
+        //IO//
+        ecrireInventaire("items.out",inventoryManager);                                       // 9 points
 
-        //G//GUIInventoryManager GUIInventoryManager = new GUIInventoryManager(inventoryManager);   // 20 points
+        //G//
+        GUIInventoryManager GUIInventoryManager = new GUIInventoryManager(inventoryManager);   // 20 points
 
+    }
+
+    private static void lireInventaire(String fichier, InventoryManager inventoryManager) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fichier))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Extraire les infos avec regex
+                Pattern pattern = Pattern.compile("Catégorie \\[(\\w+)] ID \\[(\\d+)] Nom \\[(.+?)] Prix \\[(\\d+(?:\\.\\d+)?)].*");
+                Matcher matcher = pattern.matcher(line);
+
+                if (!matcher.find()) continue;
+                String categorie = matcher.group(1);
+                int id = Integer.parseInt(matcher.group(2));
+                String nom = matcher.group(3);
+                double prix = Double.parseDouble(matcher.group(4));
+
+                switch (categorie) {
+                    case "Milk":
+                        Pattern milkPattern = Pattern.compile("Gras \\[(\\d+(?:\\.\\d+)?)].*Litres \\[(\\d+(?:\\.\\d+)?)].*");
+                        Matcher milkMatcher = milkPattern.matcher(line);
+                        if (milkMatcher.find()) {
+                            double fat = Double.parseDouble(milkMatcher.group(1));
+                            double liters = Double.parseDouble(milkMatcher.group(2));
+                            inventoryManager.addNewMilkItem(id, nom, prix, fat, liters);
+                        }
+                        break;
+                    case "Eggs":
+                        Pattern eggsPattern = Pattern.compile("Couleur \\[(.+?)] Nombre \\[(\\d+)]");
+                        Matcher eggsMatcher = eggsPattern.matcher(line);
+                        if (eggsMatcher.find()) {
+                            String couleur = eggsMatcher.group(1);
+                            int nb = Integer.parseInt(eggsMatcher.group(2));
+                            inventoryManager.addNewEggsItem(id, nom, prix, couleur, nb);
+                        }
+                        break;
+                    case "Bread":
+                        Pattern breadPattern = Pattern.compile("Couleur \\[(.+?)] Poids \\[(\\d+)]");
+                        Matcher breadMatcher = breadPattern.matcher(line);
+                        if (breadMatcher.find()) {
+                            String couleur = breadMatcher.group(1);
+                            int poids = Integer.parseInt(breadMatcher.group(2));
+                            inventoryManager.addNewBreadItem(id, nom, prix, couleur, poids);
+                        }
+                        break;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Erreur de lecture du fichier : " + e.getMessage());
+        }
+    }
+
+
+    private static void ecrireInventaire(String fichier, InventoryManager inventoryManager) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichier))) {
+            Item[] items = inventoryManager.getArrayOfItems();
+
+            for (Item item : items) {
+                String line = "";
+
+                switch (item.getCategory()) {
+                    case Milk:
+
+                        ItemMilk milk = (ItemMilk) item;
+                        line = String.format("Catégorie [Milk] ID [%d] Nom [%s] Prix [%.2f] Gras [%.1f] Litres [%.1f]",
+                                milk.getID(), milk.getName(), milk.getPrice(), milk.getFat(), milk.getLiters());
+                        break;
+                    case Eggs:
+                        ItemEggs eggs = (ItemEggs) item;
+                        line = String.format("Catégorie [Eggs] ID [%d] Nom [%s] Prix [%.2f] Couleur [%s] Nombre [%d]",
+                                eggs.getID(), eggs.getName(), eggs.getPrice(), eggs.getColor(), eggs.getNumber());
+                        break;
+                    case Bread:
+                        ItemBread bread = (ItemBread) item;
+                        line = String.format("Catégorie [Bread] ID [%d] Nom [%s] Prix [%.2f] Couleur [%s] Poids [%.0f]",
+                                bread.getID(), bread.getName(), bread.getPrice(), bread.getColor(), bread.getWeight());
+                        break;
+                }
+                writer.write(line);
+                writer.newLine();
+            }
+
+        } catch (IOException e) {
+            System.out.println("Erreur d’écriture du fichier : " + e.getMessage());
+        }
     }
 }

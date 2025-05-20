@@ -96,10 +96,10 @@ public class GUIInventoryManager extends JFrame
             if (item == null) {
                 showSelectErrorDialog();
             } else {
-                //
-                // TODO -- Ajoutez le code pour ouvrir le dialogue de visualisation d'un item
-                //         ainsi que la gestion des erreurs possibles si nécessaire
-                //
+                //DONE
+                GUIItemDialog guiItemDialog = new GUIItemDialog(this, item, false);
+                guiItemDialog.setVisible(true);
+
             }
         });
 
@@ -115,10 +115,8 @@ public class GUIInventoryManager extends JFrame
             if (item == null) {
                 showSelectErrorDialog();
             } else {
-                //
-                // TODO -- Ajoutez le code nécessaire pour augmenter la quantité d'un item
-                //         ainsi que la gestion des erreurs possibles si nécessaire
-                //
+                //DONE
+                inventoryManager.increaseItemQuantity(item.getID(), 1);
             }
         });
 
@@ -134,11 +132,12 @@ public class GUIInventoryManager extends JFrame
             if (item == null) {
                 showSelectErrorDialog();
             } else {
-                //
-                // TODO -- Ajoutez le code nécessaire pour réduire la quantité ainsi que la gestion des
-                //  erreurs et afficher un dialogue d'erreur si jamais on essaye d'aller en dessous de zéro
-                //
-
+                //DONE
+                try{
+                    inventoryManager.decreaseItemQuantity(item.getID(), 1);
+                }catch (Exception e){
+                    showErrorDialog("Stock Insuffisant");
+                }
             }
         });
 
@@ -154,11 +153,9 @@ public class GUIInventoryManager extends JFrame
             if (item == null) {
                 showSelectErrorDialog();
             } else {
-                //
-                // TODO -- Ajoutez le code pour ouvrir le dialogue d'édition d'un item
-                //         ainsi que la gestion des erreurs possibles si nécessaire
-                //
-
+                //DONE
+                GUIItemDialog guiItemDialog = new GUIItemDialog(this, item, true);
+                guiItemDialog.setVisible(true);
             }
         });
 
@@ -175,8 +172,15 @@ public class GUIInventoryManager extends JFrame
                 showSelectErrorDialog();
             }
             else {
+
+                try{
+                    inventoryManager.removeItem(item.getID());
+                    itemsListModel.removeElement(item);
+                }catch(ExceptionItemNotFound e){
+                    showErrorDialog("Item n'existe pas");
+                }
                 //
-                // TODO -- Ajoutez le code nécessaire pour supprimer un item ainsi que la gestion des
+                // DONE -- Ajoutez le code nécessaire pour supprimer un item ainsi que la gestion des
                 //         erreurs pour afficher un dialogue d'erreur si jamais on essaye d'effacer un
                 //         item qui n'existe pas
                 //
@@ -208,6 +212,47 @@ public class GUIInventoryManager extends JFrame
                 @Override
                 public void componentHidden(ComponentEvent e) {
                     Category category = guiItemChoiceDialog.getChosenCategory();
+                    if (category != null) {
+
+
+                        Item newItem = switch (category) {
+                            case Bread -> new ItemBread(100, "aucune description", 0, "-", 0);
+                            case Eggs   -> new ItemEggs(200, "aucune description", 0, "-", 0);
+                            case Milk  -> new ItemMilk(300, "aucune description", 0, 0, 0);
+                            default    -> null;
+                        };
+
+                        if (newItem != null) {
+
+                            GUIItemDialog guiItemDialog = new GUIItemDialog(GUIInventoryManager.this, newItem, true);
+                            guiItemDialog.setVisible(true);
+
+                            itemsListModel.addElement(newItem);
+                        }
+
+                    }
+                      /*  switch (category) {
+                            case Bread:
+                                inventoryManager.addNewBreadItem(100, "nouvel item à editer", 33, "-", 0);
+                                break;
+
+                            case Eggs:
+                                inventoryManager.addNewEggsItem(200, "nouvel item à editer", 0, "-", 0);
+
+                                break;
+
+                            case Milk:
+                                inventoryManager.addNewMilkItem(300, "nouvel item à editer", 0, 0, 0);
+
+                                break;
+                            default:
+
+                        }
+                    }*/
+
+
+
+
                     //
                     // TODO -- Ajoutez le code nécessaire pour la création d'un nouvel item
                     //         ainsi que la gestion des erreurs possibles si nécessaire
