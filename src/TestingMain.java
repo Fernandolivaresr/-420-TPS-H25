@@ -8,24 +8,17 @@ import Item.*;
 import java.io.*;
 import java.util.regex.Pattern;
 import java.util.regex.*;
-import java.util.regex.MatchResult;
+
 
 public class TestingMain  {
 
     /*UML, Orienté-Objet, Héritage, Swing, Paquetage,
     Entrées-Sorties, Javadoc*/
 
+
     public static void main(String[] args) throws Exception {
-        // TODO -- Dé-commentez les lignes autres que //IO// et //G// au fur et à mesure de votre implémentation
-        //         Éventuellement, tous les tests devraient fonctionner et vous devriez
-        //         obtenir le même affichage que celui montré dans l'énoncé
-        // TODO --  Dé-commentez les lignes //IO// pour tester les deux fonction de lecture et d'écriture
-        //          Vous devriez obtenir le format de fichier montré dans items.in et items.out
-        // TODO -- Dé-commentez la ligne //G// pour tester votre implémentation graphique
-        //         Éventuellement, vous devriez obtenir le même résultat que dans le clip de l'énoncé
 
         InventoryManager inventoryManager = new InventoryManager();
-        //IO
         lireInventaire("items.in",inventoryManager);                                          // 9 points
         System.out.println("\n=> TEST Création de nouveaux items");                                 // 6 points
         inventoryManager.addNewBreadItem(10, "Pain brun riche", 2.45, "brun", 200);
@@ -105,10 +98,7 @@ public class TestingMain  {
         for (Item item : items) {
             System.out.println(item.infoToString());
         }
-        //IO//
         ecrireInventaire("items.out",inventoryManager);                                       // 9 points
-
-        //G//
         GUIInventoryManager GUIInventoryManager = new GUIInventoryManager(inventoryManager);   // 20 points
 
     }
@@ -163,16 +153,14 @@ public class TestingMain  {
     }
 
 
-    private static void ecrireInventaire(String fichier, InventoryManager inventoryManager) {
+    private static void ecrireInventaire(String fichier, InventoryManager inventoryManager){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichier))) {
             Item[] items = inventoryManager.getArrayOfItems();
 
             for (Item item : items) {
                 String line = "";
-
                 switch (item.getCategory()) {
                     case Milk:
-
                         ItemMilk milk = (ItemMilk) item;
                         line = String.format("Catégorie [Milk] ID [%d] Nom [%s] Prix [%.2f] Gras [%.1f] Litres [%.1f]",
                                 milk.getID(), milk.getName(), milk.getPrice(), milk.getFat(), milk.getLiters());
