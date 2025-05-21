@@ -5,8 +5,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUIErrorDialog extends JDialog
-{
+/**
+ * Boîte de dialogue pour afficher un message d'erreur simple à l'utilisateur.
+ */
+public class GUIErrorDialog extends JDialog {
+
+    /**
+     * Constructeur de la boîte de dialogue d'erreur.
+     *
+     * @param frame La fenêtre parente à laquelle cette boîte de dialogue est liée
+     * @param message Le message d'erreur à afficher
+     */
     public GUIErrorDialog(JFrame frame, String message) {
         super(frame, "Erreur", Dialog.ModalityType.DOCUMENT_MODAL);
 

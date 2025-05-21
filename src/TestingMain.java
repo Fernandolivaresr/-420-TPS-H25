@@ -9,14 +9,21 @@ import java.io.*;
 import java.util.regex.Pattern;
 import java.util.regex.*;
 
-
+/**
+ * Classe principale utilisée pour tester les fonctionnalités de gestion d’inventaire.
+ * Elle inclut des méthodes utilitaires pour lire et écrire un inventaire à partir d’un fichier
+ */
 public class TestingMain  {
 
-    /*UML, Orienté-Objet, Héritage, Swing, Paquetage,
-    Entrées-Sorties, Javadoc*/
-
-
+    /**
+     * Méthode principale.
+     *
+     * @param args Arguments de la ligne de commande
+     * @throws Exception En cas d’erreur pendant les tests
+     */
     public static void main(String[] args) throws Exception {
+
+        //https://github.com/Fernandolivaresr/-420-TPS-H25
 
         InventoryManager inventoryManager = new InventoryManager();
         lireInventaire("items.in",inventoryManager);                                          // 9 points
@@ -103,6 +110,13 @@ public class TestingMain  {
 
     }
 
+    /**
+     * Lit un fichier contenant des données d’inventaire, analyse chaque ligne à l’aide d’expressions régulières,
+     * puis ajoute les articles correspondants à l’objet InventoryManager
+     *
+     * @param fichier Le chemin du fichier à lire
+     * @param inventoryManager L’instance de gestionnaire d’inventaire à mettre à jour
+     */
     private static void lireInventaire(String fichier, InventoryManager inventoryManager) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fichier))) {
             String line;
@@ -152,7 +166,13 @@ public class TestingMain  {
         }
     }
 
-
+    /**
+     * Écrit le contenu actuel de l’inventaire dans un fichier.
+     * Chaque ligne représente un article formaté selon sa catégorie.
+     *
+     * @param fichier Le chemin du fichier dans lequel écrire
+     * @param inventoryManager Le gestionnaire d’inventaire contenant les articles à sauvegarder
+     */
     private static void ecrireInventaire(String fichier, InventoryManager inventoryManager){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichier))) {
             Item[] items = inventoryManager.getArrayOfItems();

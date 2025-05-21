@@ -10,14 +10,23 @@ import java.awt.event.ComponentListener;
 import Inventaire.*;
 import Item.*;
 
-//todo
-public class GUIInventoryManager extends JFrame
-{
+/**
+ * Classe graphique pour la gestion d'inventaire.
+ * Permet d'afficher et de manipuler une liste d'objets Item à l'aide de l'interface Swing.
+ */
+
+public class GUIInventoryManager extends JFrame {
     private InventoryManager inventoryManager;
     private DefaultListModel<Item> itemsListModel;
     private JList itemsList;
     private int nextID;
 
+    /**
+     * Constructeur principal de l'interface graphique.
+     * Initialise l'application avec un gestionnaire d'inventaire donné, prépare l'interface graphique,
+     * et initialise le prochain ID d'article à 100.
+     * @param inventoryManager Le gestionnaire d'inventaire à utiliser pour gérer les articles
+     */
     public GUIInventoryManager(InventoryManager inventoryManager) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.inventoryManager = inventoryManager;
@@ -217,9 +226,9 @@ public class GUIInventoryManager extends JFrame
 
                         Item newItem = switch (category) {
                             case Bread -> new ItemBread(100, "aucune description", 0, "-", 0);
-                            case Eggs   -> new ItemEggs(200, "aucune description", 0, "-", 0);
-                            case Milk  -> new ItemMilk(300, "aucune description", 0, 0, 0);
-                            default    -> null;
+                            case Eggs -> new ItemEggs(200, "aucune description", 0, "-", 0);
+                            case Milk -> new ItemMilk(300, "aucune description", 0, 0, 0);
+                            default -> null;
                         };
 
                         if (newItem != null) {
@@ -231,36 +240,6 @@ public class GUIInventoryManager extends JFrame
                         }
 
                     }
-                      /*  switch (category) {
-                            case Bread:
-                                inventoryManager.addNewBreadItem(100, "nouvel item à editer", 33, "-", 0);
-                                break;
-
-                            case Eggs:
-                                inventoryManager.addNewEggsItem(200, "nouvel item à editer", 0, "-", 0);
-
-                                break;
-
-                            case Milk:
-                                inventoryManager.addNewMilkItem(300, "nouvel item à editer", 0, 0, 0);
-
-                                break;
-                            default:
-
-                        }
-                    }*/
-
-
-
-
-                    //
-                    // TODO -- Ajoutez le code nécessaire pour la création d'un nouvel item
-                    //         ainsi que la gestion des erreurs possibles si nécessaire
-                    //
-                    //         Conseil: Vous pourriez ajouter un item avec des valeurs temporaires puis demander
-                    //         à l'utilisateur de les remplacer dans le dialogue de modification d'item.
-                    //
-
                 }
             });
 

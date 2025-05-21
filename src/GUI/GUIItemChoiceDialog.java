@@ -6,10 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Item.*;
 
+/**
+ * Boîte de dialogue permettant à l'utilisateur de choisir une catégorie d'article.
+ */
 public class GUIItemChoiceDialog extends JDialog {
     private JFrame frame;
     private Category chosenCategory;
 
+    /**
+     * Constructeur de la boîte de dialogue de sélection de catégorie.
+     *
+     * @param frame La fenêtre parente à laquelle cette boîte de dialogue est liée
+     */
     public GUIItemChoiceDialog(JFrame frame) {
         super(frame, "Choisir un type", Dialog.ModalityType.DOCUMENT_MODAL);
         this.frame = frame;
